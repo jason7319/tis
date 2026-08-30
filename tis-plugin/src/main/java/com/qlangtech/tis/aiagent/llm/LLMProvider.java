@@ -63,6 +63,7 @@ import static com.qlangtech.tis.aiagent.llm.TISJsonSchema.SCHEMA_VALUE_PATTERN;
 import static com.qlangtech.tis.extension.util.PluginExtraProps.KEY_CREATOR_HETERO;
 import static com.qlangtech.tis.extension.util.PluginExtraProps.KEY_DESC_NAME;
 import static com.qlangtech.tis.util.HeteroEnum.PARAMS_CONFIG_USER_ISOLATION;
+import static com.qlangtech.tis.util.UploadPluginMeta.KEY_TARGET_PLUGIN_DESC;
 
 /**
  * 大模型接口抽象
@@ -75,6 +76,11 @@ import static com.qlangtech.tis.util.HeteroEnum.PARAMS_CONFIG_USER_ISOLATION;
 @SuppressWarnings("all")
 public abstract class LLMProvider extends ParamsConfig {
 
+    protected static final String SUPPORT_MODEL_DEEPSEEK = "DeepSeek";
+    protected static final String SUPPORT_MODEL_QWEN = "QWen";
+    protected static final String SUPPORT_MODEL_ANTHROPIC = "Anthropic";
+    protected static final String SUPPORT_MODEL_ZHIPU = "Zhipu";
+    protected static final String SUPPORT_MODEL_OPENAI = "OpenAI";
 
     public enum LLMChatPhase {
         Start, ERROR, Complete
@@ -104,10 +110,11 @@ public abstract class LLMProvider extends ParamsConfig {
         //        }
         //      ]
         JSONArray result = new JSONArray();
-        String[] llms = new String[]{"DeepSeek", "QWen", "Anthropic", "Zhipu"};
+        String[] llms = new String[]{SUPPORT_MODEL_DEEPSEEK, SUPPORT_MODEL_QWEN, SUPPORT_MODEL_ANTHROPIC,
+                SUPPORT_MODEL_ZHIPU, SUPPORT_MODEL_OPENAI, "Kimi", "Baichuan", "Yi", "Mistral", "Grok", "Doubao", "Hunyuan", "Gemini", "MiniMax", "Ernie"};
         for (String llm : llms) {
             JSONObject o = new JSONObject();
-            o.put(KEY_CREATOR_HETERO, llm);
+            o.put(KEY_TARGET_PLUGIN_DESC, KEY_DISPLAY_NAME);
             o.put(KEY_DESC_NAME, llm);
             o.put(KEY_CREATOR_HETERO, PARAMS_CONFIG_USER_ISOLATION.getIdentity());
             result.add(o);

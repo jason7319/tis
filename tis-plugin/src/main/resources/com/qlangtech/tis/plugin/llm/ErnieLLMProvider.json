@@ -1,0 +1,82 @@
+{
+  "name": {
+    "help": "实例的唯一性名称，取一个方便记忆的名称",
+    "placeholder": "ernie1"
+  },
+  "apiKey": {
+    "label": "API Key",
+    "help": "百度文心 API Key（Client ID），请在百度智能云控制台获取并妥善保管"
+  },
+  "secretKey": {
+    "label": "Secret Key",
+    "help": "百度文心 Secret Key（Client Secret），请在百度智能云控制台获取并妥善保管"
+  },
+  "baseUrl": {
+    "label": "Base URL",
+    "readonly": true,
+    "dftVal": "https://aip.baidubce.com",
+    "help": "API基础地址，默认为百度文心官方地址"
+  },
+  "model": {
+    "label": "模型",
+    "dftVal": "ernie-4.5",
+    "help": "模型的 ID，支持 ernie-4.5、ernie-4.0、ernie-3.5、ernie-lite 等，推荐使用：ernie-4.5",
+    "enum": [
+      {
+        "val": "completions_pro",
+        "label": "ERNIE 4.0（旗舰）"
+      },
+      {
+        "val": "ernie-4.5-8k-preview",
+        "label": "ERNIE 4.5（最新旗舰，8K）"
+      },
+      {
+        "val": "ernie-3.5-8k-preview",
+        "label": "ERNIE 3.5（均衡，8K）"
+      },
+      {
+        "val": "ernie-lite-8k",
+        "label": "ERNIE Lite（轻量，8K）"
+      },
+      {
+        "val": "ernie-speed-8k",
+        "label": "ERNIE Speed（快速，8K）"
+      }
+    ]
+  },
+  "maxTokens": {
+    "label": "最大Token数",
+    "dftVal": 2048,
+    "help": "最大生成 token 数量，不同模型有不同的限制"
+  },
+  "sampling": {
+    "label": "高级采样",
+    "dftVal": "temperature",
+    "help": "在确定性的模型架构下引入可控的随机性，从而生成多样、新颖且合理的输出",
+    "subDescEnumFilter": "return com.qlangtech.tis.plugin.llm.ZhipuLLMProvider.filter(desc);"
+  },
+  "stream": {
+    "label": "流式输出",
+    "dftVal": false,
+    "help": "是否开启流式输出，开启后会逐步返回生成的内容",
+    "readonly": true,
+    "enum": [
+      { "val": true, "label": "是" },
+      { "val": false, "label": "否" }
+    ]
+  },
+  "printLog": {
+    "label": "打印日志",
+    "dftVal": false,
+    "help": "是否打印与模型交互的执行日志",
+    "enum": [
+      { "val": true, "label": "是" },
+      { "val": false, "label": "否" }
+    ]
+  },
+  "maxRetry": {
+    "label": "最大尝试次数",
+    "dftVal": 1,
+    "help": "当向服务端提交请求错误，最大尝试次数"
+  }
+}

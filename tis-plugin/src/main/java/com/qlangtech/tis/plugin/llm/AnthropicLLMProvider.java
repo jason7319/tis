@@ -572,7 +572,7 @@ public class AnthropicLLMProvider extends LLMProvider {
 
     @Override
     public String getProviderName() {
-        return "Anthropic";
+        return SUPPORT_MODEL_ANTHROPIC;
     }
 
     @Override
@@ -658,7 +658,7 @@ public class AnthropicLLMProvider extends LLMProvider {
 
         @Override
         public String getDisplayName() {
-            return "Anthropic";
+            return SUPPORT_MODEL_ANTHROPIC;
         }
 
         @Override

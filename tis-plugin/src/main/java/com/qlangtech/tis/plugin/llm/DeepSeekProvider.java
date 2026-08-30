@@ -415,7 +415,7 @@ public class DeepSeekProvider extends LLMProvider {
 
     @Override
     public String getProviderName() {
-        return "DeepSeek";
+        return SUPPORT_MODEL_DEEPSEEK;
     }
 
     @Override
@@ -464,7 +464,7 @@ public class DeepSeekProvider extends LLMProvider {
 
         @Override
         public String getDisplayName() {
-            return "DeepSeek";
+            return SUPPORT_MODEL_DEEPSEEK;
         }
 
         @Override

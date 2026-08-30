@@ -101,6 +101,7 @@
     * [MySQL导入Hive](https://www.bilibili.com/video/BV1Vb4y1z7DN?share_source=copy_web)
     * [MySQL导入Clickhouse](https://www.bilibili.com/video/BV1x64y1B7V8/)
     * [MySQL同步StarRocks](https://www.bilibili.com/video/BV19o4y1M7eq/)
+    * [基于Ontology本体语义的ChatBI演示](https://www.bilibili.com/video/BV1Jh8X6oE18/?t=912)
     * MySQL同步Doris [>批量同步](https://www.bilibili.com/video/BV1eh4y1o7yQ) [>实时同步](https://www.bilibili.com/video/BV1nX4y1h7SW)
 
 

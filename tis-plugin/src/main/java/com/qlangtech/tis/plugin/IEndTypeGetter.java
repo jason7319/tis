@@ -159,8 +159,19 @@ public interface IEndTypeGetter {
         , Dolphinscheduler("ds", EndTypeCategory.Assist, true) //
         , Deepseek("deepseek", EndTypeCategory.Assist, true) //
         , Anthropic("anthropic", EndTypeCategory.Assist, true) //
+        , OpenAI("openai", EndTypeCategory.Assist, true) //
         , QWen("qwen", EndTypeCategory.Assist, true) //
         , Zhipu("zhipu", EndTypeCategory.Assist, true) //
+        , Kimi("kimi", EndTypeCategory.Assist, true) //
+        , Baichuan("baichuan", EndTypeCategory.Assist, true) //
+        , Yi("yi_model", EndTypeCategory.Assist, true) //
+        , Mistral("mistral", EndTypeCategory.Assist, true) //
+        , Grok("grok", EndTypeCategory.Assist, true) //
+        , Doubao("doubao", EndTypeCategory.Assist, true) //
+        , Hunyuan("hunyuan", EndTypeCategory.Assist, true) //
+        , Gemini("gemini", EndTypeCategory.Assist, true) //
+        , MiniMax("minimax", EndTypeCategory.Assist, true) //
+        , Ernie("ernie", EndTypeCategory.Assist, true) //
         , UserProfile("user-profile", EndTypeCategory.Assist, true) //
         , Pipeline("pipeline", EndTypeCategory.Assist, true) //
         , Workflow("workflow", EndTypeCategory.Assist, true) //

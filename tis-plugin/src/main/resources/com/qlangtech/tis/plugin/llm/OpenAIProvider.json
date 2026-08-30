@@ -1,0 +1,98 @@
+{
+  "name": {
+    "help": "实例的唯一性名称，取一个方便记忆的名称",
+    "placeholder": "openai1"
+  },
+  "apiKey": {
+    "label": "API Key",
+    "help": "OpenAI API密钥，请在OpenAI控制台获取并妥善保管"
+  },
+  "baseUrl": {
+    "label": "Base URL",
+    "readonly": false,
+    "dftVal": "https://api.openai.com",
+    "help": "API基础地址，默认为OpenAI官方地址"
+  },
+  "model": {
+    "label": "模型",
+    "dftVal": "gpt-4o",
+    "help": "模型的 ID，支持 gpt-4o、gpt-4o-mini、o3、o4-mini 等，推荐使用：gpt-4o",
+    "enum": [
+      {
+        "val": "gpt-4o",
+        "label": "GPT-4o（最新旗舰，多模态）"
+      },
+      {
+        "val": "gpt-4o-mini",
+        "label": "GPT-4o Mini（轻量高效）"
+      },
+      {
+        "val": "o3",
+        "label": "o3（最强推理模型）"
+      },
+      {
+        "val": "o4-mini",
+        "label": "o4-mini（快速推理）"
+      },
+      {
+        "val": "gpt-4.1",
+        "label": "GPT-4.1（高质量）"
+      },
+      {
+        "val": "gpt-4.1-mini",
+        "label": "GPT-4.1 Mini（轻量）"
+      },
+      {
+        "val": "gpt-4.1-nano",
+        "label": "GPT-4.1 Nano（极速）"
+      }
+    ]
+  },
+  "maxTokens": {
+    "label": "最大Token数",
+    "dftVal": 16384,
+    "help": "最大生成 token 数量，不同模型有不同的限制"
+  },
+  "sampling": {
+    "label": "高级采样",
+    "dftVal": "temperature",
+    "help": "在确定性的模型架构下引入可控的随机性，从而生成多样、新颖且合理的输出",
+    "subDescEnumFilter": "return com.qlangtech.tis.plugin.llm.ZhipuLLMProvider.filter(desc);"
+  },
+  "stream": {
+    "label": "流式输出",
+    "dftVal": false,
+    "help": "是否开启流式输出，开启后会逐步返回生成的内容",
+    "readonly": true,
+    "enum": [
+      {
+        "val": true,
+        "label": "是"
+      },
+      {
+        "val": false,
+        "label": "否"
+      }
+    ]
+  },
+  "printLog": {
+    "label": "打印日志",
+    "dftVal": false,
+    "help": "是否打印与模型交互的执行日志",
+    "enum": [
+      {
+        "val": true,
+        "label": "是"
+      },
+      {
+        "val": false,
+        "label": "否"
+      }
+    ]
+  },
+  "maxRetry": {
+    "label": "最大尝试次数",
+    "dftVal": 1,
+    "help": "当向服务端提交请求错误，最大尝试次数"
+  }
+}

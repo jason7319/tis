@@ -70,7 +70,7 @@ graph TB
     WorkflowRegion -->|路由| WorkflowInstance
 
     %% 消息流：监控查询
-    Client -->|QueryWorkflowStatus| DAGMonitor
+    Client -->|QueryWorkflowStatus| 
     Client -->|QueryWaitingQueue| DAGMonitor
     Client -->|QueryRunningQueue| DAGMonitor
     DAGMonitor -.->|查询结果| Client

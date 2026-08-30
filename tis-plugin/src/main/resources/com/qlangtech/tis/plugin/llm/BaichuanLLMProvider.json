@@ -1,0 +1,66 @@
+{
+  "name": {
+    "help": "实例的唯一性名称，取一个方便记忆的名称",
+    "placeholder": "baichuan1"
+  },
+  "apiKey": {
+    "label": "API Key",
+    "help": "百川智能 API密钥，请在百川智能开放平台获取并妥善保管"
+  },
+  "baseUrl": {
+    "label": "Base URL",
+    "readonly": false,
+    "dftVal": "https://api.baichuan-ai.com",
+    "help": "API基础地址，默认为百川智能官方地址"
+  },
+  "model": {
+    "label": "模型",
+    "dftVal": "Baichuan4-Turbo",
+    "help": "模型的 ID，支持 Baichuan4-Turbo、Baichuan4-Air 等，推荐使用：Baichuan4-Turbo",
+    "enum": [
+      {
+        "val": "Baichuan4-Turbo",
+        "label": "百川4-Turbo（旗舰）"
+      },
+      {
+        "val": "Baichuan4-Air",
+        "label": "百川4-Air（轻量）"
+      }
+    ]
+  },
+  "maxTokens": {
+    "label": "最大Token数",
+    "dftVal": 8192,
+    "help": "最大生成 token 数量，不同模型有不同的限制"
+  },
+  "sampling": {
+    "label": "高级采样",
+    "dftVal": "temperature",
+    "help": "在确定性的模型架构下引入可控的随机性，从而生成多样、新颖且合理的输出",
+    "subDescEnumFilter": "return com.qlangtech.tis.plugin.llm.ZhipuLLMProvider.filter(desc);"
+  },
+  "stream": {
+    "label": "流式输出",
+    "dftVal": false,
+    "help": "是否开启流式输出，开启后会逐步返回生成的内容",
+    "readonly": true,
+    "enum": [
+      { "val": true, "label": "是" },
+      { "val": false, "label": "否" }
+    ]
+  },
+  "printLog": {
+    "label": "打印日志",
+    "dftVal": false,
+    "help": "是否打印与模型交互的执行日志",
+    "enum": [
+      { "val": true, "label": "是" },
+      { "val": false, "label": "否" }
+    ]
+  },
+  "maxRetry": {
+    "label": "最大尝试次数",
+    "dftVal": 1,
+    "help": "当向服务端提交请求错误，最大尝试次数"
+  }
+}

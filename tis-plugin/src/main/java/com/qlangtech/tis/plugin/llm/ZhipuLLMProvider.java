@@ -471,7 +471,7 @@ public class ZhipuLLMProvider extends LLMProvider {
 
     @Override
     public String getProviderName() {
-        return "Zhipu";
+        return SUPPORT_MODEL_ZHIPU;
     }
 
     @Override
@@ -520,7 +520,7 @@ public class ZhipuLLMProvider extends LLMProvider {
 
         @Override
         public String getDisplayName() {
-            return "Zhipu";
+            return SUPPORT_MODEL_ZHIPU;
         }
 
         @Override

@@ -532,7 +532,7 @@ public class QWenLLMProvider extends LLMProvider {
 
     @Override
     public String getProviderName() {
-        return "QWen";
+        return SUPPORT_MODEL_QWEN;
     }
 
     @Override
@@ -583,7 +583,7 @@ public class QWenLLMProvider extends LLMProvider {
 
         @Override
         public String getDisplayName() {
-            return "QWen";
+            return SUPPORT_MODEL_QWEN;
         }
 
         @Override
