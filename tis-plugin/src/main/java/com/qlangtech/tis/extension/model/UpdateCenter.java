@@ -76,6 +76,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -385,31 +386,16 @@ public class UpdateCenter implements Saveable {
      * @return
      */
     public List<UpdateSite.Plugin> getAvailables() {
-        return getPlugins((site) -> site.getAvailables());
-        //        Map<String, UpdateSite.Plugin> pluginMap = new LinkedHashMap<>();
-        //        for (UpdateSite site : sites) {
-        //            for (UpdateSite.Plugin plugin : site.getAvailables()) {
-        //                final UpdateSite.Plugin existing = pluginMap.get(plugin.name);
-        //                if (existing == null) {
-        //                    pluginMap.put(plugin.name, plugin);
-        //                } else if (!existing.version.equals(plugin.version)) {
-        //                    // allow secondary update centers to publish different versions
-        //                    // TODO refactor to consolidate multiple versions of the same plugin within the one row
-        //                    final String altKey = plugin.name + ":" + plugin.version;
-        //                    if (!pluginMap.containsKey(altKey)) {
-        //                        pluginMap.put(altKey, plugin);
-        //                    }
-        //                }
-        //            }
-        //        }
-        //
-        //        return new ArrayList<>(pluginMap.values());
+        return getPlugins(UpdateSite::getAvailables);
     }
 
 
     public List<UpdateSite.Plugin> getPlugins(Function<UpdateSite, List<UpdateSite.Plugin>> pluginsCreator) {
         Map<String, UpdateSite.Plugin> pluginMap = new LinkedHashMap<>();
         for (UpdateSite site : sites) {
+            if (CollectionUtils.isEmpty(site.getAllPlugins())) {
+                throw new IllegalStateException("site:" + site.getUrl() + " relevant plugins can not be empty");
+            }
             for (UpdateSite.Plugin plugin : pluginsCreator.apply(site)) {
                 final UpdateSite.Plugin existing = pluginMap.get(plugin.name);
                 if (existing == null) {
@@ -499,7 +485,7 @@ public class UpdateCenter implements Saveable {
 
         List<FormValidation> results = new ArrayList<>();
         for (Future<FormValidation> f : futures) {
-            results.add(f.get());
+            results.add(Objects.requireNonNull(f.get(), "FormValidation can not be null"));
         }
         return results;
     }

@@ -207,7 +207,17 @@
       "Bash(javap -c -p org/apache/paimon/fs/hadoop/HadoopFileIO.class)",
       "Bash(javap -c -p org/apache/hadoop/fs/s3a/Constants.class)",
       "Bash(javap -c -p org/apache/hadoop/fs/s3a/S3AUtils.class)",
-      "Bash(git *)"
+      "Bash(git *)",
+      "Bash(jq --version)",
+      "Bash(curl *)",
+      "Bash(node create_pptx.js)",
+      "Bash(pip3 install *)",
+      "Bash(markitdown /tmp/tis-akka-batch-jobs.pptx)",
+      "Bash(soffice *)",
+      "WebFetch(domain:www.sitepoint.com)",
+      "WebFetch(domain:betterstack.com)",
+      "WebFetch(domain:deepseekharness.io)",
+      "WebFetch(domain:www.deepseek.com)"
     ],
     "deny": [],
     "ask": []

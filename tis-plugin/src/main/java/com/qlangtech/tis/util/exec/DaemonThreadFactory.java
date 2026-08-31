@@ -36,7 +36,7 @@ public class DaemonThreadFactory implements ThreadFactory {
         Thread thread = new Thread(r);
         thread.setDaemon(true);
         thread.setUncaughtExceptionHandler(
-                (t, e) -> LOGGER.error("Unhandled exception in thread " + t, e));
+                (t, e) -> LOGGER.error("Unhandled exception in thread {}", t.getName(), e));
         return thread;
     }
 }
