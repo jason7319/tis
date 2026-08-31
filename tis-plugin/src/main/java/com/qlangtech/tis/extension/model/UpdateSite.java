@@ -193,6 +193,8 @@ public class UpdateSite {
                 }
             });
         } else {
+            LOGGER.info("DataFile:{}, exist:{},plugin count:{}", getDataFile().file.getAbsolutePath(),
+                    getDataFile().exists(), this.getAllPlugins().size());
             return null;
         }
     }
