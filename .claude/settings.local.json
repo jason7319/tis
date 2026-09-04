@@ -217,7 +217,12 @@
       "WebFetch(domain:www.sitepoint.com)",
       "WebFetch(domain:betterstack.com)",
       "WebFetch(domain:deepseekharness.io)",
-      "WebFetch(domain:www.deepseek.com)"
+      "WebFetch(domain:www.deepseek.com)",
+      "Bash(brew list *)",
+      "Bash(brew install *)",
+      "Bash(npx docusaurus *)",
+      "Bash(env)",
+      "Bash(grep -E \"\\\\.md$\")"
     ],
     "deny": [],
     "ask": []

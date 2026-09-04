@@ -23,6 +23,7 @@ import com.alibaba.datax.common.element.QueryCriteria;
 import com.qlangtech.tis.TIS;
 import com.qlangtech.tis.annotation.Public;
 import com.qlangtech.tis.build.task.IBuildHistory;
+import com.qlangtech.tis.config.flink.IFlinkCluster;
 import com.qlangtech.tis.coredefine.module.action.TriggerBuildResult;
 import com.qlangtech.tis.datax.preview.IPreviewRowsDataService;
 import com.qlangtech.tis.datax.preview.PreviewRowsData;
@@ -32,8 +33,7 @@ import com.qlangtech.tis.extension.ExtensionList;
 import com.qlangtech.tis.extension.TISExtensible;
 import com.qlangtech.tis.fullbuild.IFullBuildContext;
 import com.qlangtech.tis.fullbuild.indexbuild.IRemoteDumpTaskTrigger;
-import com.qlangtech.tis.fullbuild.phasestatus.PhaseStatusCollection;
-import com.qlangtech.tis.fullbuild.phasestatus.impl.DumpPhaseStatus;
+import com.qlangtech.tis.manage.common.Config;
 import com.qlangtech.tis.order.center.IJoinTaskContext;
 import com.qlangtech.tis.plugin.ds.CMeta;
 import com.qlangtech.tis.plugin.ds.DBIdentity;
@@ -43,11 +43,11 @@ import com.qlangtech.tis.plugin.ds.TableInDB;
 import com.qlangtech.tis.runtime.module.misc.IControlMsgHandler;
 import com.qlangtech.tis.runtime.module.misc.IMessageHandler;
 import com.qlangtech.tis.web.start.TisAppLaunch;
+import com.qlangtech.tis.web.start.TisSubModule;
 import com.qlangtech.tis.workflow.pojo.IWorkflow;
 import com.qlangtech.tis.workflow.pojo.WorkFlowBuildHistory;
 import com.tis.hadoop.rpc.RpcServiceReference;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,7 +74,8 @@ public abstract class DataXJobSubmit implements IPreviewRowsDataService {
     public static final String KEY_DATAX_READERS = "dataX_readers";
     // public static final int MAX_TABS_NUM_IN_PER_JOB = 40;
     public static final int DEFAULT_PARALLELISM_IN_VM = 1;// parallelism
-
+    private static final String DEFAULT_CLASSPATH = "./lib/*:./" //
+            + IDataXTaskRelevant.KEY_TIS_DATAX_EXECUTOR + ".jar:./conf/";
     public static Callable<DataXJobSubmit> mockGetter;
 
     public static void main(String[] args) throws Exception {
@@ -83,6 +84,32 @@ public abstract class DataXJobSubmit implements IPreviewRowsDataService {
                         + ".class");
         while (resources.hasMoreElements()) {
             System.out.println(resources.nextElement());
+        }
+    }
+
+    public static String createExecutorClasspath() {
+        if (TisAppLaunch.isTestMock()) {
+            //this.setClasspath(DEFAULT_CLASSPATH);
+            return DEFAULT_CLASSPATH;
+        } else {
+            File tisHomeDir = Config.getTisHome();
+            File assebleDir = new File(tisHomeDir, TisSubModule.TIS_ASSEMBLE.moduleName);
+            File localExecutorLibDir = new File(Config.getLibDir(),
+                    "plugins/" + IFlinkCluster.PLUGIN_TIS_DATAX_LOCAL_EXECOTOR + "/WEB-INF/lib");
+            File webStartDir = new File(tisHomeDir, TisSubModule.WEB_START.moduleName);
+
+            if (!localExecutorLibDir.exists()) {
+                throw new IllegalStateException("target localExecutorLibDir dir is not exist:" + localExecutorLibDir.getAbsolutePath());
+            }
+            if (!assebleDir.exists()) {
+                throw new IllegalStateException("target asseble dir is not exist:" + assebleDir.getAbsolutePath());
+            }
+            if (!webStartDir.exists()) {
+                throw new IllegalStateException("target " + TisSubModule.WEB_START.moduleName + "/lib dir is not "
+                        + "exist:" + webStartDir.getAbsolutePath());
+            }
+            return assebleDir.getPath() + "/lib/*:" + localExecutorLibDir.getPath()
+                    + "/*:" + webStartDir.getPath() + "/conf:" + new File(webStartDir, "/lib/*").getPath();
         }
     }
 

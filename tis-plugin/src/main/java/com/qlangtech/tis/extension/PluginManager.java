@@ -547,7 +547,7 @@ public class PluginManager {
                                     }
                                 }
                             });
-                        }
+                    }
 
                         if (CenterResource.notFetchFromCenterRepository()) {
                             g.followedBy().notFatal().attains(PLUGINS_STARTED).add("Load updateCenter", (reactor) -> {
