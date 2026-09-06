@@ -185,6 +185,14 @@ public abstract class OntologyDomain implements Describable<OntologyDomain>, Ide
         return new File(getDir(ontologyName), OntologyGlossary.KEY_GLOSSARY);
     }
 
+    public static File getActionDir(String ontologyName) {
+        return new File(getDir(ontologyName), "action-type");
+    }
+
+    public static File getFunctionDir(String ontologyName) {
+        return new File(getDir(ontologyName), "function");
+    }
+
     @FormField(identity = true, ordinal = 0, validate = {Validator.require, Validator.identity_strict})
     public String name;
 

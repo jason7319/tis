@@ -19,6 +19,7 @@
 package com.qlangtech.tis.plugin.ontology;
 
 import com.alibaba.citrus.turbine.Context;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.qlangtech.tis.extension.Describable;
 import com.qlangtech.tis.extension.Descriptor;
 import com.qlangtech.tis.extension.DescriptorUseableShortComment;
@@ -153,6 +154,54 @@ public abstract class Ontology implements Describable<Ontology>, IdentityName, I
         //  return objectTypes;
     }
 
+    /**
+     * 加载某一个本体域中的所有 Actions
+     *
+     * @param ontologyName 本体域名称
+     * @return Actions 列表
+     */
+    public static List<OntologyAction> loadAllActions(String ontologyName) {
+        if (StringUtils.isEmpty(ontologyName)) {
+            throw new IllegalArgumentException("param ontologyName can not be empty");
+        }
+        return OntologyEnum.Action.loadAll(OntologyPluginMeta.create(OntologyEnum.Action, ontologyName));
+    }
+
+    /**
+     * 加载某一个 Action 的详细信息
+     *
+     * @param ontologyName 本体域名称
+     * @param actionName Action 名称
+     * @return Action 详情
+     */
+    public static OntologyAction loadActionDetail(String ontologyName, String actionName) {
+        return OntologyEnum.Action.load(OntologyPluginMeta.create(OntologyEnum.Action, ontologyName).setPluginIdVal(actionName));
+    }
+
+    /**
+     * 加载某一个本体域中的所有 Functions
+     *
+     * @param ontologyName 本体域名称
+     * @return Functions 列表
+     */
+    public static List<OntologyFunction> loadAllFunctions(String ontologyName) {
+        if (StringUtils.isEmpty(ontologyName)) {
+            throw new IllegalArgumentException("param ontologyName can not be empty");
+        }
+        return OntologyEnum.Function.loadAll(OntologyPluginMeta.create(OntologyEnum.Function, ontologyName));
+    }
+
+    /**
+     * 加载某一个 Function 的详细信息
+     *
+     * @param ontologyName 本体域名称
+     * @param functionName Function 名称
+     * @return Function 详情
+     */
+    public static OntologyFunction loadFunctionDetail(String ontologyName, String functionName) {
+        return OntologyEnum.Function.load(OntologyPluginMeta.create(OntologyEnum.Function, ontologyName).setPluginIdVal(functionName));
+    }
+
     // ================================================================
     //  Neo4j 图谱统计（由 tis-ontology-plugin 运行时注册）
     // ================================================================
@@ -248,6 +297,32 @@ public abstract class Ontology implements Describable<Ontology>, IdentityName, I
             @Override
             public File getAssistRootDir(String ontologyName) {
                 return OntologyDomain.getGlossaryDir(ontologyName);
+            }
+        }),
+        Action(OntologyAction.KEY_ACTION_TYPE
+                , IEndTypeGetter.EndType.OntologyAction
+                , new BaiscAssistStoreGetter<OntologyAction>() {
+            @Override
+            public IPluginStore<OntologyAction> getPluginStore(OntologyPluginMeta pluginMeta) {
+                return super.getPluginStore(pluginMeta.setPersistence());
+            }
+
+            @Override
+            public File getAssistRootDir(String ontologyName) {
+                return OntologyDomain.getActionDir(ontologyName);
+            }
+        }),
+        Function(OntologyFunction.KEY_FUNCTION
+                , IEndTypeGetter.EndType.OntologyFunction
+                , new BaiscAssistStoreGetter<OntologyFunction>() {
+            @Override
+            public IPluginStore<OntologyFunction> getPluginStore(OntologyPluginMeta pluginMeta) {
+                return super.getPluginStore(pluginMeta.setPersistence());
+            }
+
+            @Override
+            public File getAssistRootDir(String ontologyName) {
+                return OntologyDomain.getFunctionDir(ontologyName);
             }
         });
 
@@ -348,7 +423,7 @@ public abstract class Ontology implements Describable<Ontology>, IdentityName, I
     //        this.create = create;
     //        return (T) this;
     //    }
-
+    @JSONField(serialize = false)
     @Override
     public Descriptor<Ontology> getDescriptor() {
         Descriptor<Ontology> desc = Objects.requireNonNull(Describable.super.getDescriptor(),

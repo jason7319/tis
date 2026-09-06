@@ -222,7 +222,21 @@
       "Bash(brew install *)",
       "Bash(npx docusaurus *)",
       "Bash(env)",
-      "Bash(grep -E \"\\\\.md$\")"
+      "Bash(grep -E \"\\\\.md$\")",
+      "Bash(awk '{print $9, $5}')",
+      "Bash(cat)",
+      "Bash(chmod +x /tmp/workshop-validation.sh)",
+      "Bash(/tmp/workshop-validation.sh)",
+      "Bash(chmod +x /tmp/all-modules-validation.sh)",
+      "Bash(/tmp/all-modules-validation.sh)",
+      "Bash(chmod +x /tmp/detailed-validation.sh)",
+      "Bash(/tmp/detailed-validation.sh)",
+      "Bash(chmod +x /tmp/cross-check-concepts.sh)",
+      "Bash(/tmp/cross-check-concepts.sh)",
+      "Bash(chmod +x /tmp/deep-concept-check.sh)",
+      "Bash(/tmp/deep-concept-check.sh)",
+      "Bash(chmod +x /tmp/final-gap-analysis.sh)",
+      "Bash(/tmp/final-gap-analysis.sh)"
     ],
     "deny": [],
     "ask": []

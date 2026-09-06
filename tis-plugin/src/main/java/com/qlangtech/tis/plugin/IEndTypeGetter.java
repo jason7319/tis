@@ -234,6 +234,8 @@ public interface IEndTypeGetter {
         , OntologyValueType("ontology-value-type", EndTypeCategory.Ontology, true)//
         , OntologyObjectType("ontology-object-type", EndTypeCategory.Ontology, true)//
         , OntologyGlossary("ontology-glossary", EndTypeCategory.Ontology, true)//
+        , OntologyAction("ontology-action", EndTypeCategory.Ontology, true)//
+        , OntologyFunction("ontology-function", EndTypeCategory.Ontology, true)//
         , OntologyMetric("ontology-metric", EndTypeCategory.Icon, true) //
         , OntologyProperty("ontology-property", EndTypeCategory.Ontology, true)
 

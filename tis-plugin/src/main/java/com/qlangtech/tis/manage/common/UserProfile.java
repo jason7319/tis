@@ -29,6 +29,7 @@ import com.qlangtech.tis.plugin.annotation.FormField;
 import com.qlangtech.tis.plugin.annotation.FormFieldType;
 import com.qlangtech.tis.plugin.annotation.Validator;
 import com.qlangtech.tis.plugin.credentials.ParamsConfigPluginStore;
+import com.qlangtech.tis.runtime.module.misc.IFieldErrorHandler;
 import com.qlangtech.tis.util.HeteroEnum;
 import com.qlangtech.tis.util.IPluginContext;
 import com.qlangtech.tis.util.UploadPluginMeta;
@@ -51,6 +52,9 @@ public class UserProfile extends ParamsConfig implements IPluginStore.BeforePlug
     @FormField(identity = true, type = FormFieldType.INPUTTEXT, ordinal = 0, validate = {Validator.identity,
             Validator.require})
     public String name;
+
+
+
     /**
      * 大模型接口
      */
@@ -111,6 +115,7 @@ public class UserProfile extends ParamsConfig implements IPluginStore.BeforePlug
             super(KEY_DISPLAY_NAME);
             this.registerSelectOptions(KEY_FIELD_LLM_NAME, LLMProvider::getExistProviders);
         }
+
 
         @Override
         public String getDisplayName() {
